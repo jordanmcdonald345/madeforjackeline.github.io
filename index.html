@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💕</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ffd6e8, #fff0f5);
+    color: #d63384;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.container {
+    padding: 30px;
+}
+
+h1 {
+    font-size: 3rem;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.countdown {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.collage {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.collage img {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.message {
+    max-width: 600px;
+    margin: auto;
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: typeFade 3s forwards;
+}
+
+.buttons {
+    margin-top: 40px;
+}
+
+button {
+    font-size: 1.3rem;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#yesBtn {
+    background-color: #ff4d88;
+    color: white;
+}
+
+#noBtn {
+    background-color: #ffc2d1;
+    position: relative;
+}
+
+#celebration {
+    display: none;
+    font-size: 2.5rem;
+    margin-top: 40px;
+    animation: pop 1s infinite alternate;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes typeFade {
+    to {opacity: 1;}
+}
+
+@keyframes pop {
+    from {transform: scale(1);}
+    to {transform: scale(1.1);}
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2023/03/02/audio_51b7e96b8f.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+    <h1>Happy Valentine’s Day ❤️</h1>
+
+    <div class="countdown" id="countdown"></div>
+
+    <div class="collage">
+        <img src="photo1.jpg">
+        <img src="photo2.jpg">
+        <img src="photo3.jpg">
+    </div>
+
+    <div class="message">
+        <p>
+            <!-- WRITE YOUR PARAGRAPH HERE -->
+            From the moment I met you, everything felt different.  
+            You make my days brighter, my laughs louder, and my heart fuller.  
+            I couldn’t imagine Valentine’s Day without you.
+        </p>
+    </div>
+
+    <div class="buttons">
+        <button id="yesBtn" onclick="sayYes()">Yes 💖</button>
+        <button id="noBtn" onmouseover="moveNo()">No 🙃</button>
+    </div>
+
+    <div id="celebration">
+        🎉💘 SHE SAID YES!!! 💘🎉
+    </div>
+</div>
+
+<script>
+// Countdown
+const valentines = new Date("February 14, 2026 00:00:00").getTime();
+
+setInterval(() => {
+    const now = new Date().getTime();
+    const diff = valentines - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+    document.getElementById("countdown").innerHTML =
+        `⏳ ${days} days ${hours} hours ${minutes} minutes until Valentine’s Day`;
+}, 1000);
+
+// No button escape
+function moveNo() {
+    const btn = document.getElementById("noBtn");
+    btn.style.left = Math.random() * 200 - 100 + "px";
+    btn.style.top = Math.random() * 200 - 100 + "px";
+}
+
+// Yes reaction
+function sayYes() {
+    document.getElementById("celebration").style.display = "block";
+    document.body.style.background =
+        "linear-gradient(135deg, #ff4d88, #ffb3c6)";
+}
+</script>
+
+</body>
+</html>
